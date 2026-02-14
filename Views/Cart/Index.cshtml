@@ -1,0 +1,64 @@
+@model CartViewModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3">Your cart</h1>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Continue shopping</a>
+</div>
+
+@if (Model.Items.Count == 0)
+{
+    <div class="alert alert-light border">Your cart is empty. Add products from home page.</div>
+}
+else
+{
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="list-group shadow-sm">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="list-group-item p-3">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div>
+                                <h2 class="h6 mb-1">@item.Product.Emoji @item.Product.Name</h2>
+                                <small class="text-muted">@item.Product.Unit · ₹@item.Product.Price</small>
+                            </div>
+                            <form asp-action="UpdateQuantity" method="post" class="d-flex gap-2 align-items-center">
+                                <input type="hidden" name="productId" value="@item.Product.Id" />
+                                <input type="number" min="0" class="form-control form-control-sm qty-input" name="quantity" value="@item.Quantity" />
+                                <button class="btn btn-sm btn-outline-dark" type="submit">Update</button>
+                            </form>
+                            <strong>₹@item.LineTotal</strong>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5">Bill details</h2>
+                    <div class="d-flex justify-content-between">
+                        <span>Subtotal</span>
+                        <span>₹@Model.Subtotal</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Delivery</span>
+                        <span>₹@Model.DeliveryFee</span>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between fw-semibold">
+                        <span>Total</span>
+                        <span>₹@Model.GrandTotal</span>
+                    </div>
+                    <form asp-action="Clear" method="post" class="mt-3">
+                        <button class="btn btn-dark w-100" type="submit">Place order & clear cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

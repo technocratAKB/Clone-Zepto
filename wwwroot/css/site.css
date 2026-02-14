@@ -1,0 +1,73 @@
+:root {
+  --zepto-purple: #5c1ee2;
+  --zepto-green: #d4ff4d;
+  --zepto-bg: #f8f6ff;
+}
+
+body {
+  background: var(--zepto-bg);
+}
+
+.top-nav {
+  background: white;
+  border-bottom: 1px solid #ece8ff;
+}
+
+.brand {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--zepto-purple);
+}
+
+.brand span {
+  color: #151515;
+}
+
+.hero {
+  background: linear-gradient(120deg, var(--zepto-purple), #8444ff);
+  color: white;
+}
+
+.chip {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #43337a;
+  background: #ece8ff;
+  font-size: 0.9rem;
+}
+
+.chip-active {
+  color: #111;
+  background: var(--zepto-green);
+}
+
+.product-card {
+  border-radius: 1rem;
+}
+
+.emoji {
+  font-size: 1.6rem;
+}
+
+.delivery-badge {
+  background: #ebe5ff;
+  color: #49358f;
+}
+
+.btn-add {
+  border-radius: 0.7rem;
+  font-weight: 700;
+  background: var(--zepto-green);
+}
+
+.btn-cart {
+  border-radius: 0.7rem;
+  background: var(--zepto-purple);
+  color: white;
+}
+
+.qty-input {
+  width: 75px;
+}

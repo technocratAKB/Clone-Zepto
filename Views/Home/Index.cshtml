@@ -1,0 +1,48 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero p-4 rounded-4 mb-4">
+    <p class="text-uppercase small mb-1">Delivery in minutes</p>
+    <h1 class="mb-2">Groceries, snacks & essentials at lightning speed</h1>
+    <p class="mb-0">A .NET 8 inspired Zepto-style storefront with a simple cart flow.</p>
+</section>
+
+<div class="d-flex flex-wrap gap-2 mb-4">
+    <a asp-action="Index" class="chip @(string.IsNullOrWhiteSpace(Model.ActiveCategory) ? "chip-active" : "")">All</a>
+    @foreach (var category in Model.Categories)
+    {
+        <a asp-action="Index" asp-route-category="@category" class="chip @(Model.ActiveCategory == category ? "chip-active" : "")">@category</a>
+    }
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h4 m-0">Popular picks</h2>
+    <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-dark">Cart (@Model.CartCount)</a>
+</div>
+
+<div class="row g-3">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card product-card h-100 shadow-sm border-0">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="emoji">@product.Emoji</span>
+                        <span class="badge delivery-badge">@product.Badge</span>
+                    </div>
+                    <h3 class="h6">@product.Name</h3>
+                    <p class="text-muted mb-2">@product.Unit</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <strong>₹@product.Price</strong>
+                        <form asp-controller="Cart" asp-action="Add" method="post">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit" class="btn btn-sm btn-add">ADD</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
