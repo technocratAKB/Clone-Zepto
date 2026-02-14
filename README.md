@@ -10,11 +10,25 @@ This project is a lightweight **Zepto-style grocery storefront clone** built wit
 - Session-backed cart state
 - Quantity updates and checkout summary card
 
-## Run locally
+## Prerequisites
+
+- .NET 8 SDK (`dotnet --version` should return `8.x`)
+- (Optional) VS Code + C# extension for one-click Run/Debug
+
+## Run in VS Code
+
+1. Open this folder in VS Code.
+2. Press `Ctrl+Shift+B` and choose **build**.
+3. Press `F5` and choose **.NET 8 Launch (Zepto Clone)**.
+4. Your browser will open automatically when the app starts.
+
+> Preconfigured files are available in `.vscode/launch.json` and `.vscode/tasks.json`.
+
+## Run from terminal
 
 ```bash
 dotnet restore
-dotnet run
+dotnet run --project Clone-Zepto.csproj
 ```
 
-Then open `http://localhost:5000` (or the URL shown in your terminal).
+Then open the URL shown in the console (`http://localhost:xxxx` or `https://localhost:xxxx`).
